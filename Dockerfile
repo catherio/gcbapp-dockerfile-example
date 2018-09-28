@@ -1,9 +1,6 @@
 FROM ubuntu:14.04
-ENV MINICONDA_URL https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+ENV PYTHON_VERSION 2.7 
 RUN  apt-get update \
   && apt-get install -y wget \
   && rm -rf /var/lib/apt/lists/*
-RUN wget $MINICONDA_URL -O miniconda.sh
-
-ENV feature_enabled false
-RUN /bin/bash -c 'if [ "$feature_enabled" = true ]; then echo "Feature activated"; else echo "Feature not activated"; fi'
+RUN /bin/bash -c 'if [ "$PYTHON_VERSION" = "2.7" ]; then wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh; else then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh; fi'
