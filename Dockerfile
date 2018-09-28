@@ -6,4 +6,4 @@ RUN  apt-get update \
 RUN wget $MINICONDA_URL -O miniconda.sh
 
 ENV feature_enabled false
-CMD sh -c 'if [ "$feature_enabled" = true ]; then echo "Feature activated"; else echo "Feature not activated"; fi'
+RUN /bin/bash -c 'if [ "$feature_enabled" = true ]; then echo "Feature activated"; else echo "Feature not activated"; fi'
